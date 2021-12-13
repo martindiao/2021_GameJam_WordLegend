@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f4445c31577594838ae1ab74b8b04468
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Bag: {instanceID: 0}
+  - slotGrid: {instanceID: 0}
+  - slotPrefab: {fileID: 5186930845211689441, guid: 12e1a4651dd4d469eac94fc0a5a27b81, type: 3}
+  - itemInfo: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

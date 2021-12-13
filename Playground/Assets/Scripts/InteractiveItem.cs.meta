@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 10bb030a1b4064746b2039d89d18ace8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - thisItem: {instanceID: 0}
+  - thisInventory: {instanceID: 0}
+  - PreNoteE: {fileID: 6937790853443296915, guid: f8e28dc0a3ec24e7fa07d26a168057e8, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
