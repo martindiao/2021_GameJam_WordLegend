@@ -10,7 +10,8 @@ public class BagItem : ScriptableObject
     public string itemName;
     public Sprite itemImage;
     //public string itemInfo;
-    public BagItem splitItem;
+    public BagItem splitItem1;
+    public BagItem splitItem2;
     public BagItem unionItem;
 
     // Start is called before the first frame update

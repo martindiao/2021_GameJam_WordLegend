@@ -3811,6 +3811,7 @@ MonoBehaviour:
   slotPrefab: {fileID: 5186930845211689441, guid: 12e1a4651dd4d469eac94fc0a5a27b81, type: 3}
   slots: []
   emptySlot: {fileID: 5186930845211689441, guid: 12e1a4651dd4d469eac94fc0a5a27b81, type: 3}
+  SlotNum: 16
   isShow: 0
 --- !u!1001 &1939236901
 PrefabInstance:
