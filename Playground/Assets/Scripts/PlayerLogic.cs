@@ -61,4 +61,23 @@ public class PlayerLogic : MonoBehaviour
             animator.SetInteger("isAttacking", 0);
         }
     }
+
+    private void PlayerMovement()
+    {
+        InputX = Input.GetAxisRaw("Horizontal");
+        InputY = Input.GetAxisRaw("Vertical");
+        Vector2 MovementInput = (transform.right * InputX + transform.up * InputY).normalized;
+        rigidbody.velocity = MoveSpeed * MovementInput;
+
+        if (MovementInput != Vector2.zero && !isAttacking)
+        {
+            animator.SetBool("isMoving", true);
+            StopX = InputX;
+            StopY = InputY;
+        }
+        else
+            animator.SetBool("isMoving", false);
+        animator.SetFloat("InputX", StopX);
+        animator.SetFloat("InputY", StopY);
+    }
 }

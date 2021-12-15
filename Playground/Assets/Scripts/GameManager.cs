@@ -6,14 +6,13 @@ public class GameManager : MonoBehaviour
 {
     private GameObject Player;
 
-    private GameObject TalkRegion;
+    public GameObject TalkRegion;
 
 
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        TalkRegion = GameObject.FindGameObjectWithTag("TalkRegion");
     }
 
     // Update is called once per frame
