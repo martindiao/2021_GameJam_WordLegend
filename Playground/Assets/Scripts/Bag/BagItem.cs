@@ -12,7 +12,8 @@ public class BagItem : ScriptableObject
     //public string itemInfo;
     public BagItem splitItem1;
     public BagItem splitItem2;
-    public BagItem unionItem;
+    public List<BagItem> unionItem;
+    public List<BagItem> targetItem;
 
     // Start is called before the first frame update
     void Start()

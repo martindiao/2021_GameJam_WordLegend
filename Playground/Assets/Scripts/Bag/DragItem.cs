@@ -41,11 +41,36 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         //有物品存在
-        if (eventData.pointerCurrentRaycast.gameObject.name == "Item Image")
+        if (eventData.pointerCurrentRaycast.gameObject.name == "Item")
         {
-            return;
-        }
+            //如果可以合体
+            //射线检测到的item在拖拽的item的union列表中
+            if (slotItem.unionItem.Contains(eventData.pointerCurrentRaycast.gameObject.GetComponent<DragItem>().slotItem))
+            {
+                //获取组合结果在结果列表中的index
+                int index = slotItem.unionItem.IndexOf(eventData.pointerCurrentRaycast.gameObject.GetComponent<DragItem>().slotItem);
+                //将射线检测的item和拖拽item移出背包
+                thisInventory.items.Remove(eventData.pointerCurrentRaycast.gameObject.GetComponent<DragItem>().slotItem);
+                //thisInventory.items.Remove(slotItem);
 
+                Debug.Log(slotItem.targetItem[index]);
+                //slotItem = slotItem.targetItem[index];
+                thisInventory.items[thisInventory.items.IndexOf(slotItem)] = slotItem.targetItem[index];
+                //补上一个空slot
+                thisInventory.items.Add(null);
+                InventoryManager.updateItem();
+                return;
+            }
+            //如果不能合体
+            else
+            {
+                transform.SetParent(originalParent.transform);
+                transform.position = originalParent.transform.position;
+                GetComponent<CanvasGroup>().blocksRaycasts = true;
+                return;
+            }
+        }
+        Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
         //直接监测到空slot
         transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
         transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
@@ -56,7 +81,6 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (eventData.button == PointerEventData.InputButton.Right && slotItem.splitItem1 != null)
             rightClick.Invoke();
-
     }
 
     //右键点击分解
