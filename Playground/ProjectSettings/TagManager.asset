@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - EleParent
+  - Bag
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,7 @@ TagManager:
     locked: 0
   - name: 3
     uniqueID: 4101797505
+    locked: 0
+  - name: 4
+    uniqueID: 740661947
     locked: 0

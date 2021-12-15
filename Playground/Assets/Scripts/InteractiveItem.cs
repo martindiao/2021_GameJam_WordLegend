@@ -12,6 +12,8 @@ public class InteractiveItem : MonoBehaviour
     private GameObject NoteE;   //创建出的E键
     private Renderer ShowOrNot; //E键的显示
     private GameObject EleParent;   //新生成的object需要是this的子object
+
+    private GameObject BagPanel;    //背包的实例
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,8 @@ public class InteractiveItem : MonoBehaviour
         NoteE.transform.SetParent(EleParent.transform);
         NoteE.transform.position = transform.position;
         ShowOrNot = NoteE.GetComponent<Renderer>();
+
+        BagPanel = GameObject.FindGameObjectWithTag("Bag");
     }
 
     // Update is called once per frame
@@ -56,6 +60,10 @@ public class InteractiveItem : MonoBehaviour
         if (!thisInventory.items.Contains(thisItem))
         {
             thisInventory.items.Add(thisItem);
+            if (!BagPanel.GetComponent<InventoryManager>().isShow)
+            {
+                BagPanel.GetComponent<InventoryManager>().ShowUp();
+            }
         }
         InventoryManager.updateItem();
     }

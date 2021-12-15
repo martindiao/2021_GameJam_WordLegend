@@ -12,16 +12,18 @@ public class InventoryManager : MonoBehaviour
     public GameObject slotPrefab; //
     public Text itemInfo;
 
+    public bool isShow;    //背包是否出来了
+
     // Start is called before the first frame update
     void Start()
     {
         instance.Bag.items.Clear();
+        isShow = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void Awake()
@@ -74,4 +76,21 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    //背包逐渐出现
+    IEnumerator ShowUpProcess(float distance, float time)
+    {
+        float number = 60 * time;
+        float StepDis = distance / number;
+        for (int i = 0; i < number; i++)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + StepDis, 0);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    public void ShowUp()
+    {
+        isShow = true;
+        StartCoroutine(ShowUpProcess(70, 1.0f));
+    }
 }
