@@ -9,7 +9,7 @@ public class BagItem : ScriptableObject
 {
     public string itemName;
     public Sprite itemImage;
-    public string itemInfo;
+    //public string itemInfo;
     public BagItem splitItem;
     public BagItem unionItem;
 

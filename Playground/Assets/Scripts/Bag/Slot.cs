@@ -8,15 +8,21 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour, IPointerClickHandler
 {
     public BagItem slotItem;
-    public Image slotImage;
+    public GameObject slotImage;
     public Inventory thisInventory; //背包
 
     public UnityEvent rightClick;
+    public GameObject ItemInSlot;
 
 
     private void Start()
     {
         rightClick.AddListener(new UnityAction(ButtonRightClick));
+    }
+
+    private void Update()
+    {
+        
     }
 
 
@@ -40,9 +46,24 @@ public class Slot : MonoBehaviour, IPointerClickHandler
 
         InventoryManager.updateItem();
     }
-    //左键点击显示Info
+
+    //左键点击Log输出图片名称
     public void itemOnClick()
     {
-        InventoryManager.UpdateItemInfo(slotItem.itemInfo);
+        Debug.Log(slotItem.itemImage.name);
+        //InventoryManager.UpdateItemInfo(slotItem.itemInfo);
+    }
+
+    public void SetUpSlot(BagItem bagitem)
+    {
+        if(bagitem == null)
+        {
+            ItemInSlot.SetActive(false);
+            return;
+        }
+
+        Debug.Log(bagitem.name);
+        Debug.Log(slotImage.name);
+        slotImage.GetComponent<Image>().sprite = bagitem.itemImage;
     }
 }

@@ -57,9 +57,17 @@ public class InteractiveItem : MonoBehaviour
 
     private void AddNewItem()
     {
+        Debug.Log(thisInventory.name);
         if (!thisInventory.items.Contains(thisItem))
         {
-            thisInventory.items.Add(thisItem);
+            for (int i = 0; i < thisInventory.items.Count; i++)
+            {
+                if (thisInventory.items[i] == null)
+                {
+                    thisInventory.items[i] = thisItem;
+                    break;
+                }
+            }
             if (!BagPanel.GetComponent<InventoryManager>().isShow)
             {
                 BagPanel.GetComponent<InventoryManager>().ShowUp();
