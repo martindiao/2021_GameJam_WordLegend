@@ -18,6 +18,7 @@ public class TalkSystem : MonoBehaviour
     void Start()
     {
         isTalking = false;
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -25,17 +26,7 @@ public class TalkSystem : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && isTalking)
         {
-            Debug.Log(talks.Count());
-            if (index == talks.Count())
-            {
-                gameObject.SetActive(false);
-                isTalking = false;
-                return;
-            }
-            
-            textRegion.text = talks[index];
-            index++;
-            Debug.Log(index);
+            CoutDialogs();
         }
         
     }
@@ -59,5 +50,22 @@ public class TalkSystem : MonoBehaviour
         isTalking = true;
         gameObject.SetActive(true);
         GetTalks(dialogs[0]);
+        CoutDialogs();
+    }
+
+    private void CoutDialogs()
+    {
+        Debug.Log(talks.Count());
+        if (index == talks.Count())
+        {
+            textRegion.text = "";
+            gameObject.SetActive(false);
+            isTalking = false;
+            return;
+        }
+
+        textRegion.text = talks[index];
+        index++;
+        Debug.Log(index);
     }
 }

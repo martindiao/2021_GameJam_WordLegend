@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private GameObject Player;
+
+    private GameObject TalkRegion;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = GameObject.FindGameObjectWithTag("Player");
+        TalkRegion = GameObject.FindGameObjectWithTag("TalkRegion");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //对话框激活时,关闭玩家脚本
+        SetPlayerState(!TalkRegion.activeSelf);
+    }
+
+    
+    private void SetPlayerState(bool state)
+    {
+        Player.GetComponent<PlayerLogic>().enabled = state;
     }
 }

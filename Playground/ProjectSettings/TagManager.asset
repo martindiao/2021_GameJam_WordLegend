@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EleParent
   - Bag
+  - TalkRegion
   layers:
   - Default
   - TransparentFX

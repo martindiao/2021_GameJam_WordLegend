@@ -61,7 +61,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 InventoryManager.updateItem();
                 return;
             }
-            //如果不能合体
+            //如果不能合体,回到原来的位置
             else
             {
                 transform.SetParent(originalParent.transform);
