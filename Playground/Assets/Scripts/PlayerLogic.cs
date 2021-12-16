@@ -41,6 +41,7 @@ public class PlayerLogic : MonoBehaviour
         //animator.SetFloat("InputY", StopY);
 
         PlayerMovement();
+        Debug.Log(InputX);
 
     }
 
@@ -48,6 +49,7 @@ public class PlayerLogic : MonoBehaviour
     {
         InputX = Input.GetAxisRaw("Horizontal");
         InputY = Input.GetAxisRaw("Vertical");
+        Debug.Log(InputX);
         Vector2 MovementInput = (transform.right * InputX + transform.up * InputY).normalized;
         rigidbody.velocity = MoveSpeed * MovementInput;
 
@@ -71,7 +73,7 @@ public class PlayerLogic : MonoBehaviour
         else
             animator.SetBool("isMoving", false);
 
-
+        
         animator.SetFloat("InputX", StopX);
         animator.SetFloat("InputY", StopY);
 
@@ -89,7 +91,7 @@ public class PlayerLogic : MonoBehaviour
         //左面
         else if (StopX < 0 && StopY < 0)
         {
-            animator.SetFloat("Direction", 0.66f);
+            animator.SetFloat("Direction", 0.67f);
         }
         //左背
         else if (StopX < 0 && StopY >= 0)
