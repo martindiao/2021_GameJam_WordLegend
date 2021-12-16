@@ -8,7 +8,7 @@ using UnityEngine;
 public class BagItem : ScriptableObject
 {
     public string itemName;
-    public Sprite itemImage;
+    //public Sprite itemImage;
     //public string itemInfo;
     public BagItem splitItem1;
     public BagItem splitItem2;

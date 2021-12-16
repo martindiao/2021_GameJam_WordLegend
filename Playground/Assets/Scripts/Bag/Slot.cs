@@ -27,8 +27,8 @@ public class Slot : MonoBehaviour
             return;
         }
         Debug.Log(bagitem.name);
-        Debug.Log(ItemInSlot.GetComponent<Image>().sprite.name);
-        ItemInSlot.GetComponent<Image>().sprite = bagitem.itemImage;
+        //Debug.Log(ItemInSlot.GetComponent<Image>().sprite.name);
+        ItemInSlot.GetComponent<Text>().text = bagitem.itemName;
         ItemInSlot.GetComponent<DragItem>().slotItem = bagitem;
     }
 }

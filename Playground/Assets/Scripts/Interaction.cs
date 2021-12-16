@@ -15,6 +15,8 @@ public class Interaction : MonoBehaviour
 
     private float Distance;
 
+    public float TalkRange;
+
     private GameObject player;
 
     private GameObject EleParent;   //新生成的object需要是this的子object
@@ -33,23 +35,28 @@ public class Interaction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckDistanceBetweenPlayer();
+    }
+
+    private void CheckDistanceBetweenPlayer()
+    {
         Distance = Vector2.Distance(transform.position, player.transform.position);
-        if(Distance <= 1.0f && !ShowOrNot.enabled)
+        if (Distance <= TalkRange && !ShowOrNot.enabled)
         {
             ShowOrNot.enabled = true;
         }
-        if(Distance > 1.0f && ShowOrNot.enabled)
+        if (Distance > TalkRange && ShowOrNot.enabled)
         {
             ShowOrNot.enabled = false;
         }
 
         //按R键对话
-        if (Distance <= 1.0f)
+        if (Distance <= TalkRange)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
                 TextRegion.GetComponent<TalkSystem>().ChangeNPC(NPCName);
-                TextRegion.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+                TextRegion.transform.position = new Vector3(transform.position.x, transform.position.y + 35f, transform.position.z);
             }
         }
     }
