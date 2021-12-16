@@ -1,7 +1,7 @@
 # 2021_gamejam_wordlegend  
 Unity 2020.3.24f1  
 
-## 操作:
+## 操作: 2D
 
 ### 人物移动:wasd
 
