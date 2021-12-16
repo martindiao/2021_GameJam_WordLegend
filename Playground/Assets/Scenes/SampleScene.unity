@@ -1733,6 +1733,7 @@ MonoBehaviour:
   thisItem: {fileID: 11400000, guid: 62ca2329bb1a74c60bd8ca68b70a5d21, type: 2}
   thisInventory: {fileID: 11400000, guid: 83274b6ed94554cb5a1d0b8089e95cc2, type: 2}
   PreNoteE: {fileID: 6937790853443296915, guid: f8e28dc0a3ec24e7fa07d26a168057e8, type: 3}
+  InterRange: 0
 --- !u!1 &829765007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,6 +1857,7 @@ GameObject:
   - component: {fileID: 922632827}
   - component: {fileID: 922632826}
   - component: {fileID: 922632828}
+  - component: {fileID: 922632829}
   m_Layer: 0
   m_Name: "\u7AF9\u5B50"
   m_TagString: Untagged
@@ -1954,6 +1956,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 30.438828, y: 12.802133}
   m_EdgeRadius: 0
+--- !u!114 &922632829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922632825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10bb030a1b4064746b2039d89d18ace8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisItem: {fileID: 11400000, guid: 4901e04b8a2f747bcbf8183084e97858, type: 2}
+  thisInventory: {fileID: 11400000, guid: 83274b6ed94554cb5a1d0b8089e95cc2, type: 2}
+  PreNoteE: {fileID: 6937790853443296915, guid: f8e28dc0a3ec24e7fa07d26a168057e8, type: 3}
+  InterRange: 10
 --- !u!1 &957620075
 GameObject:
   m_ObjectHideFlags: 0

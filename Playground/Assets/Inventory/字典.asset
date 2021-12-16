@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 376b894ff39af4cd6b2bdc36392ca56e, type: 3}
-  m_Name: Bag
+  m_Name: "\u5B57\u5178"
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: 62ca2329bb1a74c60bd8ca68b70a5d21, type: 2}

@@ -6,17 +6,21 @@ public class InteractiveItem : MonoBehaviour
 {
     public BagItem thisItem;    //这个东西对应的背包物品
     public Inventory thisInventory; //背包
-
     public GameObject PreNoteE; //接近NPC时显示的E键素材
+    public float InterRange;    //交互范围
 
     private GameObject NoteE;   //创建出的E键
     private Renderer ShowOrNot; //E键的显示
     private GameObject EleParent;   //新生成的object需要是this的子object
 
     private GameObject BagPanel;    //背包的实例
+    private GameObject Player;
+    private float Distance; //和玩家的距离
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
+
         EleParent = GameObject.FindGameObjectWithTag("EleParent");
         NoteE = Instantiate(PreNoteE);
         NoteE.transform.SetParent(EleParent.transform);
@@ -29,30 +33,7 @@ public class InteractiveItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ShowOrNot.enabled == true)
-        {
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                AddNewItem();
-                Destroy(gameObject);
-            }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            ShowOrNot.enabled = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            ShowOrNot.enabled = false;
-        }
+        CheckDistanceBetweenPlayer();
     }
 
     private void AddNewItem()
@@ -74,5 +55,28 @@ public class InteractiveItem : MonoBehaviour
             }
         }
         InventoryManager.updateItem();
+    }
+
+    private void CheckDistanceBetweenPlayer()
+    {
+        Distance = Vector2.Distance(transform.position, Player.transform.position);
+        if (Distance <= InterRange && !ShowOrNot.enabled)
+        {
+            ShowOrNot.enabled = true;
+        }
+        if (Distance > InterRange && ShowOrNot.enabled)
+        {
+            ShowOrNot.enabled = false;
+        }
+
+        //按R键对话
+        if (Distance <= InterRange)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                AddNewItem();
+                Destroy(gameObject);
+            }
+        }
     }
 }
