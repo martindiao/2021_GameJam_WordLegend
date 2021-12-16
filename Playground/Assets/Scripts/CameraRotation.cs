@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class CameraRotation : MonoBehaviour
 {
-    private float rotTime = 0.2f;
+    //private float rotTime = 0.2f;
 
     private Transform Player;
 
-    private bool isRot;
+    public Vector3 offset;
+
+    //private bool isRot;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,34 +20,34 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Player.position;
+        transform.position = Player.position + offset;
 
-        Rotate();
+        //Rotate();
     }
 
-    void Rotate()
-    {
-        if (Input.GetKeyDown(KeyCode.Q) && !isRot)
-        {
-            StartCoroutine(RotateProcess(-90, rotTime));
-        }
-        if (Input.GetKeyDown(KeyCode.E) && !isRot)
-        {
-            StartCoroutine(RotateProcess(90, rotTime));
-        }
-    }
+    //void Rotate()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Q) && !isRot)
+    //    {
+    //        StartCoroutine(RotateProcess(-90, rotTime));
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.E) && !isRot)
+    //    {
+    //        StartCoroutine(RotateProcess(90, rotTime));
+    //    }
+    //}
 
-    IEnumerator  RotateProcess(float angle, float time)
-    {
-        float number = 60 * time;
-        float nextAngle = angle / number;
-        isRot = true;
-        for(int i = 0; i< number; i++)
-        {
-            transform.Rotate(new Vector3(0, 0, nextAngle));
-            yield return new WaitForFixedUpdate();
-        }
+    //IEnumerator  RotateProcess(float angle, float time)
+    //{
+    //    float number = 60 * time;
+    //    float nextAngle = angle / number;
+    //    isRot = true;
+    //    for(int i = 0; i< number; i++)
+    //    {
+    //        transform.Rotate(new Vector3(0, 0, nextAngle));
+    //        yield return new WaitForFixedUpdate();
+    //    }
 
-        isRot = false;
-    }
+    //    isRot = false;
+    //}
 }
