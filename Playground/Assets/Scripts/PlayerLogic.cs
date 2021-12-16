@@ -56,10 +56,10 @@ public class PlayerLogic : MonoBehaviour
         {
             rigidbody.velocity = new Vector3(MoveSpeed * MovementInput.x, 0, MoveSpeed * MovementInput.z);
         }
-        else
-        {
-            rigidbody.velocity = new Vector3(MoveSpeed * MovementInput.x, -10, MoveSpeed * MovementInput.z);
-        }
+        // else
+        // {
+        //     rigidbody.velocity = new Vector3(MoveSpeed * MovementInput.x, -10, MoveSpeed * MovementInput.z);
+        // }
         
 
 
