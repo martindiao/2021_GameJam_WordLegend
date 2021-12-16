@@ -80,7 +80,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 7238856815331917722}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -143,7 +143,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ac234728fee8244f589630bc7fc872ae, type: 3}
+    m_Font: {fileID: 12800000, guid: 9192d2f90174c44f29c8ea1d58d16337, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0

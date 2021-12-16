@@ -3,7 +3,9 @@ guid: 5b53fe08453844b3599167bf48c4d44f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - PreNoteE: {fileID: 8429805813840179678, guid: 56db15d5bf88848df84fe5d15faf44ea, type: 3}
+  - TextRegion: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
