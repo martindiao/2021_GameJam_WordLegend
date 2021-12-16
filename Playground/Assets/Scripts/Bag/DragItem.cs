@@ -70,6 +70,16 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 return;
             }
         }
+
+        //如果拖拽出了背包区域,返回背包
+        if(eventData.pointerCurrentRaycast.gameObject.name != "Item" && eventData.pointerCurrentRaycast.gameObject.tag != "Slot")
+        {
+            transform.SetParent(originalParent.transform);
+            transform.position = originalParent.transform.position;
+            GetComponent<CanvasGroup>().blocksRaycasts = true;
+            return;
+        }
+
         Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
         //直接监测到空slot
         transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);

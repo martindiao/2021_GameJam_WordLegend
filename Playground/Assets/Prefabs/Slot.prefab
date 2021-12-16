@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: -6948236125364577989}
   m_Layer: 5
   m_Name: Slot
-  m_TagString: Untagged
+  m_TagString: Slot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,5 +241,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaaa6c1a779e427e9b5680af8cefa51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotImage: {fileID: 0}
   ItemInSlot: {fileID: 3406938387868681305}

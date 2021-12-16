@@ -6,7 +6,7 @@ public class PlayerLogic : MonoBehaviour
 {
     public float MoveSpeed;
 
-    new private Rigidbody2D rigidbody;
+    new private Rigidbody rigidbody;
 
     private Animator animator;
 
@@ -18,7 +18,7 @@ public class PlayerLogic : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -48,8 +48,21 @@ public class PlayerLogic : MonoBehaviour
     {
         InputX = Input.GetAxisRaw("Horizontal");
         InputY = Input.GetAxisRaw("Vertical");
-        Vector2 MovementInput = (transform.right * InputX + transform.up * InputY).normalized;
-        rigidbody.velocity = MoveSpeed * MovementInput;
+        //Vector3 MovementInput = (transform.right * InputX + transform.up * InputY).normalized;
+        Vector3 MovementInput = new Vector3(InputX,0,InputY).normalized;
+        //rigidbody.velocity = MoveSpeed * MovementInput;
+
+        if(rigidbody.velocity.y >= 0)
+        {
+            rigidbody.velocity = new Vector3(MoveSpeed * MovementInput.x, 0, MoveSpeed * MovementInput.z);
+        }
+        else
+        {
+            rigidbody.velocity = new Vector3(MoveSpeed * MovementInput.x, -10, MoveSpeed * MovementInput.z);
+        }
+        
+
+
 
         //如果延轴移动,获取上一帧垂直方向的输入,以保证人物方向不会突变
         if (InputX == 0)
@@ -62,7 +75,7 @@ public class PlayerLogic : MonoBehaviour
         }
 
         //人物是否移动
-        if (MovementInput != Vector2.zero)
+        if (MovementInput != Vector3.zero)
         {
             animator.SetBool("isMoving", true);
             StopX = InputX;
