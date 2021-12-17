@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1020464350606316319}
   - component: {fileID: 1020464350606316318}
-  - component: {fileID: 1020464350606316313}
+  - component: {fileID: 3190123421369107967}
   m_Layer: 0
   m_Name: "\u58A8\u70B9"
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1020464350606316312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -899.19855, y: -13.871063, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 740661947
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b30b3a1d7803042ec8d5538cb7324176, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 29bb7ed65bfa94efbbc0dea9cb69e3bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1020464350606316313
+--- !u!95 &3190123421369107967
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

@@ -50,10 +50,10 @@ public class Interaction : MonoBehaviour
             ShowOrNot.enabled = false;
         }
 
-        //按R键对话
+        //按E键对话
         if (Distance <= TalkRange)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 TextRegion.GetComponent<TalkSystem>().ChangeNPC(NPCName);
                 TextRegion.transform.position = new Vector3(transform.position.x, transform.position.y + 35f, transform.position.z);

@@ -5,8 +5,9 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - thisItem: {instanceID: 0}
-  - thisInventory: {instanceID: 0}
+  - thisInventory: {fileID: 11400000, guid: 83274b6ed94554cb5a1d0b8089e95cc2, type: 2}
   - PreNoteE: {fileID: 8429805813840179678, guid: 56db15d5bf88848df84fe5d15faf44ea, type: 3}
+  - PreMoDian: {fileID: 1020464350606316312, guid: cab6e1861f609402b869722eb4d8e55a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

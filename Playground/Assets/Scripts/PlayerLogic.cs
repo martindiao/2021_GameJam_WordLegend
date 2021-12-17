@@ -41,7 +41,6 @@ public class PlayerLogic : MonoBehaviour
         //animator.SetFloat("InputY", StopY);
 
         PlayerMovement();
-        Debug.Log(InputX);
 
     }
 
@@ -49,7 +48,6 @@ public class PlayerLogic : MonoBehaviour
     {
         InputX = Input.GetAxisRaw("Horizontal");
         InputY = Input.GetAxisRaw("Vertical");
-        Debug.Log(InputX);
         Vector2 MovementInput = (transform.right * InputX + transform.up * InputY).normalized;
         rigidbody.velocity = MoveSpeed * MovementInput;
 

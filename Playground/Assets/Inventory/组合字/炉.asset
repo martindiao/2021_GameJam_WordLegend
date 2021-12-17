@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1cc3a139a58049998e9fa9376bc14ad, type: 3}
-  m_Name: "\u6599"
+  m_Name: "\u7089"
   m_EditorClassIdentifier: 
-  itemName: "\u6599"
-  itemImage: {fileID: 0}
-  splitItem1: {fileID: 0}
-  splitItem2: {fileID: 0}
+  itemName: "\u7089"
+  splitItem1: {fileID: 11400000, guid: 21777e88ebfd541efa859f64bc06bdc9, type: 2}
+  splitItem2: {fileID: 11400000, guid: 889e5a54a3bb6429db85b11771b4bcdc, type: 2}
   unionItem: []
   targetItem: []

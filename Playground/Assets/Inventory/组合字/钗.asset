@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1cc3a139a58049998e9fa9376bc14ad, type: 3}
+  m_Name: "\u9497"
+  m_EditorClassIdentifier: 
+  itemName: "\u9497"
+  splitItem1: {fileID: 11400000, guid: a434839e11e1544ca893d22adbb1e55f, type: 2}
+  splitItem2: {fileID: 11400000, guid: d2b49848b8f924d02a0f78f0d5cfac72, type: 2}
+  unionItem: []
+  targetItem: []

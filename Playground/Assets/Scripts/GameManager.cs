@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject TalkRegion;
 
+    public bool isInteraction;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,10 @@ public class GameManager : MonoBehaviour
     {
         //对话框激活时,关闭玩家脚本
         SetTalkState(!TalkRegion.activeSelf);
+        if (!TalkRegion.activeSelf)
+        {
+            SetPickItemState(!isInteraction);
+        }
     }
 
     
@@ -31,5 +37,10 @@ public class GameManager : MonoBehaviour
         {
             npc.GetComponent<Interaction>().enabled = state;
         }
+    }
+
+    private void SetPickItemState(bool state)
+    {
+        Player.GetComponent<PlayerLogic>().enabled = state;
     }
 }
