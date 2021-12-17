@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private GameObject Player;
     public List<GameObject> NPC;
+    public GameObject Bag;
 
     public GameObject TalkRegion;
 
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     // Update is called once per frame
@@ -29,7 +31,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+    private void FixedUpdate()
+    {
+        
+    }
+
     private void SetTalkState(bool state)
     {
         Player.GetComponent<PlayerLogic>().enabled = state;

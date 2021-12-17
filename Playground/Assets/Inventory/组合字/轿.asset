@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u8F7F"
   m_EditorClassIdentifier: 
   itemName: "\u8F7F"
-  splitItem1: {fileID: 0}
-  splitItem2: {fileID: 0}
+  splitItem1: {fileID: 11400000, guid: 4ee8703d3721d46079f0cecca479d9fb, type: 2}
+  splitItem2: {fileID: 11400000, guid: 735cb88d5f12042f89b1b1578f44d21f, type: 2}
   unionItem: []
   targetItem: []

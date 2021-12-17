@@ -13,6 +13,8 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Inventory thisInventory; //背包
     public BagItem slotItem;
 
+    private GameObject Hit3DItem;
+
 
 
     private void Start()
@@ -33,16 +35,34 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position;
+        //监测是否拖拽出了背包
+        if(eventData.pointerCurrentRaycast.gameObject.name=="BagPanel"|| eventData.pointerCurrentRaycast.gameObject.name == "背包界面")
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                Hit3DItem = hit.collider.gameObject;
+                Debug.Log(Hit3DItem.name);
+            }
+            else
+            {
+                Hit3DItem = null;
+            }
+            
+        }
     }
 
     //结束拖拽
     //1.如果射线检测有物体存在,则destroy这两个物品,结合
     //2.如果没有物体存在,则直接放置到此位置
+    //3.
     public void OnEndDrag(PointerEventData eventData)
     {
-        //有物品存在
+        //如果监测到有物品存在
         if (eventData.pointerCurrentRaycast.gameObject.name == "Item")
         {
+            
             //如果可以合体
             //射线检测到的item在拖拽的item的union列表中
             if (slotItem.unionItem.Contains(eventData.pointerCurrentRaycast.gameObject.GetComponent<DragItem>().slotItem))
@@ -64,17 +84,50 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             //如果不能合体,回到原来的位置
             else
             {
+                Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
                 transform.SetParent(originalParent.transform);
                 transform.position = originalParent.transform.position;
                 GetComponent<CanvasGroup>().blocksRaycasts = true;
                 return;
             }
+
         }
-        Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
-        //直接监测到空slot
-        transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
-        transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+        
+        //如果直接监测到空slot
+        if (eventData.pointerCurrentRaycast.gameObject.tag == "Slot")
+        {
+            transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+            transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+            GetComponent<CanvasGroup>().blocksRaycasts = true;
+            return;
+        }
+
+        //如果检测到的是桥并且这个物品是“桥”字
+        if(slotItem.itemName=="桥" && (Hit3DItem.name == "桥"|| Hit3DItem.name == "断桥"))
+        {
+            Debug.Log("Fix");
+            
+            //Fix the Brige
+            Hit3DItem.GetComponent<BrigeLogic>().FixBrige();
+            //Destory 'Qiao'
+            thisInventory.items.Remove(slotItem);
+            //Add new empty Slot
+            thisInventory.items.Add(null);
+            //Update bag
+            InventoryManager.updateItem();
+            Destroy(this);
+            return;
+
+        }
+
+        //如果监测不是slot或item
+        transform.SetParent(originalParent.transform);
+        transform.position = originalParent.transform.position;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
+        foreach(var i in GameObject.FindGameObjectsWithTag("Bag"))
+        {
+            i.GetComponent<CanvasGroup>().enabled = true;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -86,7 +139,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     //右键点击分解
     private void ButtonRightClick()
     {
-        Debug.Log("Button Right Click");
+        Debug.Log("右键分解");
         if (!thisInventory.items.Contains(slotItem.splitItem1))
         {
             for (int i = 0; i < thisInventory.items.Count; i++)

@@ -82,7 +82,6 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = 0; i < instance.Bag.items.Count; i++)
         {
-            Debug.Log(instance.Bag.items.Count);
             //CreatNewItem(instance.Bag.items[i]);
             instance.slots.Add(Instantiate(instance.emptySlot));
             instance.slots[i].transform.SetParent(instance.slotGrid.transform);

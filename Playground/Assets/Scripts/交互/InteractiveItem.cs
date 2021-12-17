@@ -67,6 +67,7 @@ public class InteractiveItem : MonoBehaviour
             }
             if (!BagPanel.GetComponent<InventoryManager>().isShow)
             {
+                Debug.Log("ShowUp!");
                 BagPanel.GetComponent<InventoryManager>().ShowUp();
             }
         }
