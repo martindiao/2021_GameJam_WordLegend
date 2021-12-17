@@ -75,6 +75,7 @@ public class InteractiveItem : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.R))
             {
                 AddNewItem();
+                Destroy(NoteE);
                 Destroy(gameObject);
             }
         }
