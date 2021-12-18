@@ -9,6 +9,7 @@ public class Interaction : MonoBehaviour
     public GameObject PreNoteE; //接近NPC时显示的E键素材
     public GameObject TextRegion;   //对话框
     public string NPCName;  //NPC的名称
+    public int DialogueIndex;
 
     private GameObject NoteE;   //创建出的E键
     private Renderer ShowOrNot; //E键的显示
@@ -30,6 +31,8 @@ public class Interaction : MonoBehaviour
         NoteE.transform.SetParent(EleParent.transform);
         NoteE.transform.position = new Vector3(transform.position.x, transform.position.y+1.5f, transform.position.z);
         ShowOrNot = NoteE.GetComponent<Renderer>();
+
+        DialogueIndex = 0;
     }
 
     // Update is called once per frame
@@ -55,7 +58,7 @@ public class Interaction : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                TextRegion.GetComponent<TalkSystem>().ChangeNPC(NPCName);
+                TextRegion.GetComponent<TalkSystem>().ChangeNPC(NPCName, DialogueIndex);
                 TextRegion.transform.position = new Vector3(transform.position.x, transform.position.y + 35f, transform.position.z);
             }
         }

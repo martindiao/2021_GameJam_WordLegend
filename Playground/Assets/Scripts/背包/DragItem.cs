@@ -102,8 +102,26 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             return;
         }
 
+        //如果监测将料拖给了矮
+        if (slotItem.itemName == "料" && Hit3DItem.name == "矮")
+        {
+            Debug.Log("给料");
+
+            //下一段对话
+            Hit3DItem.gameObject.GetComponent<Interaction>().DialogueIndex += 1;
+            //Destory
+            thisInventory.items.Remove(slotItem);
+            //Add new empty Slot
+            thisInventory.items.Add(null);
+            //Update bag
+            InventoryManager.updateItem();
+            Destroy(this);
+            return;
+
+        }
+
         //如果检测到的是桥并且这个物品是“桥”字
-        if(slotItem.itemName=="桥" && (Hit3DItem.name == "桥"|| Hit3DItem.name == "断桥"))
+        if (slotItem.itemName=="桥" && (Hit3DItem.name == "桥"|| Hit3DItem.name == "断桥"))
         {
             Debug.Log("Fix");
             

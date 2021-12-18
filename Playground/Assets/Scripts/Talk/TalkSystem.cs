@@ -6,12 +6,16 @@ using UnityEngine.UI;
 
 public class TalkSystem : MonoBehaviour
 {
+    public List<TextAsset> PangBai;
+    public List<TextAsset> Ai; //对话文件
+    public List<TextAsset> She;
+    public List<TextAsset> Mu;
+    public List<TextAsset> XiaoBing;
 
-    public List<TextAsset> dialogs; //对话文件
     public Text textRegion; //对话框
     public List<string> talks;  //逐句对话
     public int index;   //对话索引
-    public string NPC;  //正对话的NPC的tag
+    public string person;  //正对话的person的Name
 
     private bool isTalking;
     // Start is called before the first frame update
@@ -31,6 +35,7 @@ public class TalkSystem : MonoBehaviour
         
     }
 
+    //将剧本提取到列表talks
     private void GetTalks(TextAsset textAsset)
     {
         index = 0;
@@ -44,15 +49,47 @@ public class TalkSystem : MonoBehaviour
         }
     }
 
-    public void ChangeNPC(string tag)
+    //根据讲话NPC名字选择对话剧本
+    public void ChangeNPC(string tag, int DialogueIndex)
     {
-        NPC = tag;
+        person = tag;
         isTalking = true;
         gameObject.SetActive(true);
-        GetTalks(dialogs[0]);
+        switch (person)
+        {
+            case "主角旁白":
+                {
+                    GetTalks(PangBai[DialogueIndex]);
+                    break;
+                }
+            case "矮":
+                {
+                    GetTalks(Ai[DialogueIndex]);
+                    break;
+                }
+            case "射":
+                {
+                    GetTalks(She[DialogueIndex]);
+                    break;
+                }
+                
+            case "牧":
+                {
+                    GetTalks(Mu[DialogueIndex]);
+                    break;
+                }
+                
+            case "兵":
+                {
+                    GetTalks(XiaoBing[DialogueIndex]);
+                    break;
+                }
+                
+        }
         CoutDialogs();
     }
 
+    //逐句输出对话
     private void CoutDialogs()
     {
         Debug.Log(talks.Count());

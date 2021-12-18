@@ -91,6 +91,11 @@ public class InteractiveItem : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                if (gameObject.name == "米")
+                {
+                    if (!gameObject.GetComponent<MiLogic>().CanPick())
+                        return;
+                }
                 MoDian.GetComponent<Animator>().Play("淡入淡出");
                 timer = 0;
                 Debug.Log(MoDian.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0));
