@@ -121,13 +121,48 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
 
         //如果检测到的是桥并且这个物品是“桥”字
-        if (slotItem.itemName=="桥" && (Hit3DItem.name == "桥"|| Hit3DItem.name == "断桥"))
+        if (slotItem.itemName == "桥" && Hit3DItem != null && (Hit3DItem.name == "桥" || Hit3DItem.name == "断桥"))
         {
             Debug.Log("Fix");
-            
+
             //Fix the Brige
             Hit3DItem.GetComponent<BrigeLogic>().FixBrige();
             //Destory 'Qiao'
+            thisInventory.items.Remove(slotItem);
+            //Add new empty Slot
+            thisInventory.items.Add(null);
+            //Update bag
+            InventoryManager.updateItem();
+            Destroy(this);
+            return;
+        }
+
+        //如果检测到的是火把并且这个物品是“火”字
+        if (slotItem.itemName == "火" && (Hit3DItem != null && Hit3DItem.name == "火把"))
+        {
+            Debug.Log("点燃");
+
+            //Light the HuoBa
+            Hit3DItem.GetComponent<HuoBaLogic>().LightIt();
+            //Destory
+            thisInventory.items.Remove(slotItem);
+            //Add new empty Slot
+            thisInventory.items.Add(null);
+            //Update bag
+            InventoryManager.updateItem();
+            Destroy(this);
+            return;
+
+        }
+
+        //如果检测到的是窗并且这个物品是“户”字
+        if (slotItem.itemName == "户" && (Hit3DItem != null && Hit3DItem.name == "窗"))
+        {
+            Debug.Log("窗户");
+
+            //Fix ChuangHu
+            Hit3DItem.GetComponent<ChuangLogic>().FixChuangHu();
+            //Destory
             thisInventory.items.Remove(slotItem);
             //Add new empty Slot
             thisInventory.items.Add(null);

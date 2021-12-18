@@ -96,6 +96,11 @@ public class InteractiveItem : MonoBehaviour
                     if (!gameObject.GetComponent<MiLogic>().CanPick())
                         return;
                 }
+                if (gameObject.name == "蛇")
+                {
+                    if (!gameObject.GetComponent<SnakeLogic>().CanPick())
+                        return;
+                }
                 MoDian.GetComponent<Animator>().Play("淡入淡出");
                 timer = 0;
                 Debug.Log(MoDian.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0));

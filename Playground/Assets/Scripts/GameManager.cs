@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class GameManager : MonoBehaviour
     public GameObject OutCavePot;
     public GameObject WaterPot;
 
+    public GameObject HeiMu;    //黑幕
+
+
     public bool isInteraction;
     //游戏阶段:1修桥前 2出山洞前 3矮死之前 4结局前
     public int GameStep;
@@ -21,12 +25,18 @@ public class GameManager : MonoBehaviour
 
     private bool IfLiao = false;
     private bool IfJiao = false;
+
+    private GameObject targetPot;
+
+    float HeiMuTimer = 0f;
+    bool switched;
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         Player.transform.position = InitialPot.transform.position;
         GameStep = 1;
+        HeiMu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -57,11 +67,37 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        if (HeiMu.activeSelf)
+        {
+            HeiMuTimer += Time.fixedDeltaTime;
+            if (HeiMuTimer < 1.0f)
+                HeiMu.GetComponent<Image>().color = new Color(0, 0, 0, HeiMuTimer);
+            if (HeiMuTimer > 1.0f)
+            {
+                if (!switched)
+                {
+                    Debug.Log(HeiMuTimer);
+                    Player.transform.position = targetPot.transform.position;
+                    switched = true;
+                }
+                HeiMu.GetComponent<Image>().color = new Color(0, 0, 0, 2.0f - HeiMuTimer);
+            }
+                
+            if (HeiMuTimer >= 2.0f)
+            {
+                HeiMu.SetActive(false);
+                HeiMuTimer = 0f;
+                GameStep += 1;
+            }
+        }
     }
 
     private void SetTalkState(bool state)
     {
+        if (!state)
+        {
+            Player.GetComponent<Animator>().SetBool("isMoving", false);
+        }
         Player.GetComponent<PlayerLogic>().enabled = state;
         foreach(var npc in NPC)
         {
@@ -97,4 +133,13 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
+
+    public void switchPosition(GameObject pot)
+    {
+        HeiMu.SetActive(true);
+        switched = false;
+        targetPot = pot;
+    }
+
+
 }

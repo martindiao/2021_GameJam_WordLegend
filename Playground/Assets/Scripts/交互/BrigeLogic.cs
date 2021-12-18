@@ -8,7 +8,7 @@ public class BrigeLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Qiao.GetComponent<Renderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class BrigeLogic : MonoBehaviour
     {
         Debug.Log("修桥");
         gameObject.GetComponent<BoxCollider>().enabled = false;
-        Qiao.GetComponentInChildren<BoxCollider2D>().enabled = false;
-        Qiao.GetComponentInChildren<Renderer>().enabled = true;
+        Qiao.GetComponent<BoxCollider2D>().enabled = false;
+        Qiao.GetComponent<Renderer>().enabled = true;
     }
 }
