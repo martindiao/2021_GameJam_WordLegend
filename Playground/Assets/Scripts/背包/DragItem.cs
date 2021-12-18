@@ -103,7 +103,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
 
         //如果监测将料拖给了矮
-        if (slotItem.itemName == "料" && Hit3DItem.name == "矮")
+        if (slotItem.itemName == "料" && Hit3DItem != null && Hit3DItem.name == "矮")
         {
             Debug.Log("给料");
 
@@ -117,7 +117,6 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             InventoryManager.updateItem();
             Destroy(this);
             return;
-
         }
 
         //如果检测到的是桥并且这个物品是“桥”字
@@ -152,7 +151,6 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             InventoryManager.updateItem();
             Destroy(this);
             return;
-
         }
 
         //如果检测到的是窗并且这个物品是“户”字
@@ -170,7 +168,23 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             InventoryManager.updateItem();
             Destroy(this);
             return;
+        }
 
+        //如果监测将蛇拖给了射
+        if (slotItem.itemName == "蛇" && Hit3DItem != null && Hit3DItem.name == "射")
+        {
+            Debug.Log("给蛇");
+
+            //下一段对话
+            Hit3DItem.gameObject.GetComponent<Interaction>().DialogueIndex += 1;
+            //Destory
+            thisInventory.items.Remove(slotItem);
+            //Add new empty Slot
+            thisInventory.items.Add(null);
+            //Update bag
+            InventoryManager.updateItem();
+            Destroy(this);
+            return;
         }
 
         //如果监测不是slot或item

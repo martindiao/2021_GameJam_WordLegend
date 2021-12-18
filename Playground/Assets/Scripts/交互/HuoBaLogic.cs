@@ -5,10 +5,11 @@ using UnityEngine;
 public class HuoBaLogic : MonoBehaviour
 {
     public GameObject HuoYan;
+    public GameObject HeiWu;
     // Start is called before the first frame update
     void Start()
     {
-        
+        HeiWu.SetActive(true);
     }
 
     // Update is called once per frame
@@ -21,5 +22,7 @@ public class HuoBaLogic : MonoBehaviour
     {
         Debug.Log("点亮火把");
         HuoYan.GetComponent<SpriteRenderer>().enabled = true;
+        HeiWu.GetComponent<Animator>().Play("Fade");
+        HeiWu.GetComponent<Collider2D>().enabled = false;
     }
 }

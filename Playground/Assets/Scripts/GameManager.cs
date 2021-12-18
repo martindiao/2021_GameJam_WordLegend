@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
                 HeiMu.SetActive(false);
                 HeiMuTimer = 0f;
                 GameStep += 1;
+                Player.GetComponent<PlayerLogic>().enabled = true;
             }
         }
     }
