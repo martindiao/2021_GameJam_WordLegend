@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
     public GameObject Bag;
     public GameObject TalkRegion;
 
+    public GameObject InitialPot;
+    public GameObject CavePot;
+    public GameObject OutCavePot;
+    public GameObject WaterPot;
+
     public bool isInteraction;
     //游戏阶段:1修桥前 2出山洞前 3矮死之前 4结局前
     public int GameStep;
@@ -20,6 +25,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        Player.transform.position = InitialPot.transform.position;
         GameStep = 1;
     }
 
