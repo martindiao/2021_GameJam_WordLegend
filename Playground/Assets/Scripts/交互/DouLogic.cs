@@ -16,9 +16,13 @@ public class DouLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!gameObject.GetComponent<Renderer>().enabled && !picked)
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if (!gameObject.GetComponent<Renderer>().enabled && !picked)
         {
-            gamemanager.GetComponent<GameManager>().NextPangBai();
             picked = true;
         }
     }

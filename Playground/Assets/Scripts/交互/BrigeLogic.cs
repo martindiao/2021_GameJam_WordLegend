@@ -21,7 +21,7 @@ public class BrigeLogic : MonoBehaviour
     {
         Debug.Log("修桥");
         gameObject.GetComponent<BoxCollider>().enabled = false;
-        Qiao.GetComponentInChildren<BoxCollider>().enabled = false;
+        Qiao.GetComponentInChildren<BoxCollider2D>().enabled = false;
         Qiao.GetComponentInChildren<Renderer>().enabled = true;
     }
 }
