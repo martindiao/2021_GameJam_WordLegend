@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     public GameObject OutCavePot;
     public GameObject WaterPot;
 
+    public GameObject ShePot1;
+
+    public GameObject AiPot;
+
     public GameObject HeiMu;    //黑幕
 
 
@@ -62,6 +66,12 @@ public class GameManager : MonoBehaviour
             IfJiao = true;
             TalkRegion.GetComponent<TalkSystem>().ChangeNPC("主角旁白", TalkRegion.GetComponent<TalkSystem>().PangBai.FindIndex(item => item.name.Equals("Jiao")));
             TalkRegion.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 35f, Player.transform.position.z);
+        }
+
+        if (GameStep == 3 && NPC[1].transform.position != ShePot1.transform.position)
+        {
+            NPC[1].transform.position = ShePot1.transform.position;
+            NPC[1].GetComponent<Interaction>().DialogueIndex += 1;
         }
     }
 
@@ -142,5 +152,8 @@ public class GameManager : MonoBehaviour
         targetPot = pot;
     }
 
+    public void TeleNPC(int index, GameObject pot)
+    {
 
+    }
 }

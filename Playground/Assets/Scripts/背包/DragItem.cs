@@ -187,6 +187,23 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             return;
         }
 
+        //如果监测将yaoshi拖给了baoxiang
+        if (slotItem.itemName == "钥" && Hit3DItem != null && Hit3DItem.name == "宝箱")
+        {
+            Debug.Log("开箱子");
+
+            //开箱子
+            Hit3DItem.gameObject.GetComponent<BoxLogic>().OpenBox();
+            //Destory
+            thisInventory.items.Remove(slotItem);
+            //Add new empty Slot
+            thisInventory.items.Add(null);
+            //Update bag
+            InventoryManager.updateItem();
+            Destroy(this);
+            return;
+        }
+
         //如果监测不是slot或item
         transform.SetParent(originalParent.transform);
         transform.position = originalParent.transform.position;
