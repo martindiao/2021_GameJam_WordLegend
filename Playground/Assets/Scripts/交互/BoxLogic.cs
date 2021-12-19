@@ -55,6 +55,7 @@ public class BoxLogic : MonoBehaviour
                 ChangeNPC("矮", GameObject.FindGameObjectWithTag("Ai").GetComponent<Interaction>().DialogueIndex);
             GameObject.FindGameObjectWithTag("Ai").GetComponent<Interaction>().TextRegion.transform.position =
                 new Vector3(GameObject.FindGameObjectWithTag("Ai").transform.position.x, GameObject.FindGameObjectWithTag("Ai").transform.position.y + 35f, GameObject.FindGameObjectWithTag("Ai").transform.position.z);
+            hasLibie = true;
         }
     }
 

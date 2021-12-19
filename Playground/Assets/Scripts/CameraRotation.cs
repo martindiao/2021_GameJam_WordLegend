@@ -10,44 +10,82 @@ public class CameraRotation : MonoBehaviour
 
     public Vector3 offset;
 
+    public bool ending;
+    public bool ended = false;
+    public float MoveTime;
+
+    Vector3 nextdistance;
+    Vector3 direction;
+
+    float Timer =0;
+
     //private bool isRot;
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        ending = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Player.position + offset;
-
-        //Rotate();
+        
     }
 
-    //void Rotate()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Q) && !isRot)
-    //    {
-    //        StartCoroutine(RotateProcess(-90, rotTime));
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.E) && !isRot)
-    //    {
-    //        StartCoroutine(RotateProcess(90, rotTime));
-    //    }
-    //}
+    private void FixedUpdate()
+    {
+        if (!ended)
+            transform.position = Player.position + offset;
 
-    //IEnumerator  RotateProcess(float angle, float time)
-    //{
-    //    float number = 60 * time;
-    //    float nextAngle = angle / number;
-    //    isRot = true;
-    //    for(int i = 0; i< number; i++)
-    //    {
-    //        transform.Rotate(new Vector3(0, 0, nextAngle));
-    //        yield return new WaitForFixedUpdate();
-    //    }
+        //Rotate();
+        if (ended)
+        {
+            if (!ending)
+            {
+                Debug.Log(transform.localPosition);
+                Debug.Log(transform.position);
+                //nextdistance = Vector3.Distance(new Vector3(0, 0, -400), transform.position) / 120;
+                direction = new Vector3(0, 0, -400) - transform.position;
+                nextdistance = direction / 120;
+                transform.Rotate(new Vector3(45, 0, 0));
+            }
+            Timer += 1/60f;
+            ending = true;
+            if (Timer <= 2.0f)
+            {
+                Debug.Log(nextdistance);
+                transform.position += nextdistance;
+                Debug.Log(transform.position);
+            }
 
-    //    isRot = false;
-    //}
+        }
+    }
+
+    public void End()
+    {
+        if (!ending)
+        {
+            Debug.Log(transform.localPosition);
+            StartCoroutine(EndProcess(transform.localPosition, MoveTime));
+        }
+            
+    }
+
+    IEnumerator EndProcess(Vector3 a, float time)
+    {
+        float number = 60 * time;
+        float nextAngle = 45 / number;
+        float nextdistance = Vector3.Distance(new Vector3(0, 0, -400), a) / number;
+        Debug.Log(nextAngle);
+        Vector3 direction = (new Vector3(0, 0, -400) - a);
+        Debug.Log(nextdistance);
+        for (int i = 0; i < number; i++)
+        {
+            //transform.RotateAroundLocal(new Vector3(1, 0, 0),nextAngle);
+            transform.localPosition += nextdistance * direction;
+            yield return new WaitForFixedUpdate();
+        }
+        ending = true;
+    }
 }

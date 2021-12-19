@@ -30,7 +30,7 @@ public class Interaction : MonoBehaviour
         EleParent = GameObject.FindGameObjectWithTag("EleParent");
         NoteE = Instantiate(PreNoteE);
         NoteE.transform.SetParent(EleParent.transform);
-        NoteE.transform.position = new Vector3(transform.position.x, transform.position.y+1.5f, transform.position.z);
+        NoteE.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         ShowOrNot = NoteE.GetComponent<Renderer>();
 
         if (Jiaoxue != null)

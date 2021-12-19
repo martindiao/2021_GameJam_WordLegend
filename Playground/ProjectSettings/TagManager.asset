@@ -10,6 +10,7 @@ TagManager:
   - Slot
   - Ai
   - She
+  - baobiao
   layers:
   - Default
   - TransparentFX

@@ -20,11 +20,15 @@ public class PuBuLogic : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (GameObject.FindGameObjectWithTag("She").GetComponent<Interaction>().DialogueIndex == 6)
         {
-            GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().switchPosition(
-                GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().WaterPot);
-            Shi.SetActive(true);
+            if (collision.tag == "Player")
+            {
+                GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().switchPosition(
+                    GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().WaterPot);
+                Shi.SetActive(true);
+            }
         }
+        
     }
 }

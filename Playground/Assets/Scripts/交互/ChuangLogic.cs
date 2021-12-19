@@ -29,10 +29,9 @@ public class ChuangLogic : MonoBehaviour
     {
         if (!GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().isInteraction)
         {
-            if (She.GetComponent<Interaction>().DialogueIndex == 2)
-            {
-                CheckDistanceBetweenPlayer();
-            }
+
+            CheckDistanceBetweenPlayer();
+            
         }
         if (!gameObject.GetComponent<Renderer>().enabled)
             ShowOrNot.enabled = false;
@@ -71,6 +70,13 @@ public class ChuangLogic : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                if (She.GetComponent<Interaction>().DialogueIndex != 2)
+                {
+
+                    She.GetComponent<Interaction>().TextRegion.GetComponent<TalkSystem>().ChangeNPC("主角旁白", 5);
+                    She.GetComponent<Interaction>().TextRegion.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 35f, Player.transform.position.z);
+                    return;
+                }
                 Player.GetComponent<PlayerLogic>().enabled = false;
                 GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().switchPosition(
                     GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().OutCavePot);

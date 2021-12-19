@@ -22,7 +22,7 @@ public class BingLogic : MonoBehaviour
         {
             GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().switchPosition(
                 GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().CavePot);
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         if (GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().GameStep == 2 && !beenTold2)

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject WaterPot;
 
     public GameObject ShePot1;
+    public GameObject ShePot2;
 
     public GameObject AiPot;
 
@@ -23,6 +24,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject KaiChang;
     public Sprite Zhuibing;
+
+    public AudioClip JueDou;
+    public AudioSource Zhuyinyue;
 
     bool started;
     float kaichangTimer;
@@ -39,6 +43,7 @@ public class GameManager : MonoBehaviour
     private GameObject targetPot;
 
     float HeiMuTimer = 0f;
+    float HuangHuTimer = 0f;
     bool switched;
     // Start is called before the first frame update
     void Start()
@@ -49,6 +54,12 @@ public class GameManager : MonoBehaviour
         HeiMu.SetActive(false);
         KaiChang.SetActive(true);
         started = false;
+
+        NPC[2].SetActive(false);
+        foreach (var baobiao in GameObject.FindGameObjectsWithTag("baobiao"))
+        {
+            baobiao.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -75,6 +86,16 @@ public class GameManager : MonoBehaviour
             }  
         }
 
+        if (GameStep == 5)
+        {
+            Player.GetComponent<PlayerLogic>().enabled = false;
+            if (!TalkRegion.activeSelf)
+            {
+                KaiChang.SetActive(true);
+                KaiChang.GetComponent<Animator>().Play("jiejv");
+            }
+            return;
+        }
 
         //对话框激活时,关闭玩家脚本
         SetTalkState(!TalkRegion.activeSelf);
@@ -108,6 +129,31 @@ public class GameManager : MonoBehaviour
             NPC[0].transform.position = AiPot.transform.position;
             NPC[0].GetComponent<Interaction>().DialogueIndex += 1;
         }
+        
+
+        if (GameStep == 4 && !Zhuyinyue.isPlaying)
+        {
+            Zhuyinyue.clip = JueDou;
+            Zhuyinyue.Play();
+            NPC[2].SetActive(true);
+            foreach(var baobiao in GameObject.FindGameObjectsWithTag("baobiao"))
+            {
+                Debug.Log(baobiao.name);
+                baobiao.SetActive(true);
+            }
+            NPC[1].transform.position = ShePot2.transform.position;
+            NPC[0].SetActive(false);
+        }
+
+        if(GameStep == 4)
+        {
+            if (HuangHuTimer >= 4.0f)
+            {
+                HeiMu.SetActive(true);
+                HuangHuTimer = 0f;
+            }
+            HuangHuTimer += Time.deltaTime;
+        }
 
     }
 
@@ -133,7 +179,8 @@ public class GameManager : MonoBehaviour
             {
                 HeiMu.SetActive(false);
                 HeiMuTimer = 0f;
-                GameStep += 1;
+                if (GameStep != 4)
+                    GameStep += 1;
                 Player.GetComponent<PlayerLogic>().enabled = true;
             }
         }
