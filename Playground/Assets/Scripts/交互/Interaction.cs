@@ -10,6 +10,7 @@ public class Interaction : MonoBehaviour
     public GameObject TextRegion;   //对话框
     public string NPCName;  //NPC的名称
     public int DialogueIndex;
+    public GameObject Jiaoxue;
 
     private GameObject NoteE;   //创建出的E键
     private Renderer ShowOrNot; //E键的显示
@@ -32,6 +33,9 @@ public class Interaction : MonoBehaviour
         NoteE.transform.position = new Vector3(transform.position.x, transform.position.y+1.5f, transform.position.z);
         ShowOrNot = NoteE.GetComponent<Renderer>();
 
+        if (Jiaoxue != null)
+            Jiaoxue.SetActive(false);
+
         DialogueIndex = 0;
     }
 
@@ -39,6 +43,11 @@ public class Interaction : MonoBehaviour
     void Update()
     {
         CheckDistanceBetweenPlayer();
+
+        if (NoteE.transform.position != new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z))
+        {
+            NoteE.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+        }
     }
 
     private void CheckDistanceBetweenPlayer()
@@ -46,10 +55,14 @@ public class Interaction : MonoBehaviour
         Distance = Vector2.Distance(transform.position, player.transform.position);
         if (Distance <= TalkRange && !ShowOrNot.enabled)
         {
+            if (Jiaoxue != null)
+                Jiaoxue.SetActive(true);
             ShowOrNot.enabled = true;
         }
         if (Distance > TalkRange && ShowOrNot.enabled)
         {
+            if (Jiaoxue != null)
+                Jiaoxue.SetActive(false);
             ShowOrNot.enabled = false;
         }
 

@@ -30,5 +30,6 @@ public class Slot : MonoBehaviour
         //Debug.Log(ItemInSlot.GetComponent<Image>().sprite.name);
         ItemInSlot.GetComponent<Text>().text = bagitem.itemName;
         ItemInSlot.GetComponent<DragItem>().slotItem = bagitem;
+        transform.localScale = new Vector3(1, 1, 1);
     }
 }

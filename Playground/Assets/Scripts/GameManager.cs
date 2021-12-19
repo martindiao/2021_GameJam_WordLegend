@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject HeiMu;    //黑幕
 
+    public GameObject KaiChang;
+    public Sprite Zhuibing;
+
+    bool started;
+    float kaichangTimer;
+
 
     public bool isInteraction;
     //游戏阶段:1修桥前 2出山洞前 3矮死之前 4结局前
@@ -41,12 +47,35 @@ public class GameManager : MonoBehaviour
         Player.transform.position = InitialPot.transform.position;
         GameStep = 1;
         HeiMu.SetActive(false);
+        KaiChang.SetActive(true);
+        started = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!started && Input.GetKeyDown(KeyCode.Space))
+        {
+            KaiChang.GetComponent<Animator>().Play("kaichang");
+            KaiChang.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            kaichangTimer = 0;
+            started = true;
+        }
+        if (started && KaiChang.activeSelf)
+        {
+            if (kaichangTimer < 2.0f)
+            {
+                kaichangTimer += Time.deltaTime;
+                //KaiChang.GetComponent<Image>().color = new Color(1, 1, 1, 1-kaichangTimer/2.0f);
+            }
+            if (kaichangTimer >= 2.0f)
+            {
+                KaiChang.SetActive(false);
+                kaichangTimer = 0;
+            }  
+        }
+
+
         //对话框激活时,关闭玩家脚本
         SetTalkState(!TalkRegion.activeSelf);
         if (!TalkRegion.activeSelf)
@@ -73,6 +102,13 @@ public class GameManager : MonoBehaviour
             NPC[1].transform.position = ShePot1.transform.position;
             NPC[1].GetComponent<Interaction>().DialogueIndex += 1;
         }
+
+        if (GameStep == 3 && NPC[1].GetComponent<Interaction>().DialogueIndex==5 && NPC[0].GetComponent<Interaction>().DialogueIndex == 1)
+        {
+            NPC[0].transform.position = AiPot.transform.position;
+            NPC[0].GetComponent<Interaction>().DialogueIndex += 1;
+        }
+
     }
 
     private void FixedUpdate()
@@ -156,4 +192,13 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
+    public void ZhuiBing()
+    {
+        KaiChang.SetActive(true);
+        KaiChang.GetComponent<Image>().sprite = Zhuibing;
+
+        KaiChang.GetComponent<Animator>().Play("zhuibing");
+    }
+
 }

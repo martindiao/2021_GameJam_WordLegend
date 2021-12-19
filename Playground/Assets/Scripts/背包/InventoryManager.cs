@@ -96,7 +96,7 @@ public class InventoryManager : MonoBehaviour
         float StepDis = distance / number;
         for (int i = 0; i < number; i++)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + StepDis, 0);
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + StepDis, 0);
             yield return new WaitForFixedUpdate();
         }
     }
@@ -104,6 +104,6 @@ public class InventoryManager : MonoBehaviour
     public void ShowUp()
     {
         isShow = true;
-        StartCoroutine(ShowUpProcess(70, 1.0f));
+        StartCoroutine(ShowUpProcess(50, 1.0f));
     }
 }
