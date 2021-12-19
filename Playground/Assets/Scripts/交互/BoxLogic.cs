@@ -8,6 +8,8 @@ public class BoxLogic : MonoBehaviour
 
     public GameObject She;
 
+    public GameObject JiaMu;
+
     bool Told;
     bool hasHanxuan;
     bool hasChased;
@@ -19,6 +21,7 @@ public class BoxLogic : MonoBehaviour
         hasHanxuan = false;
         hasChased = false;
         hasLibie = false;
+        JiaMu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,7 +49,7 @@ public class BoxLogic : MonoBehaviour
         }
         if (hasHanxuan && !hasChased)
         {
-            GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().ZhuiBing();
+            JiaMu.SetActive(true);
             hasChased = true;
         }
         if(hasChased && !hasLibie)
@@ -57,6 +60,7 @@ public class BoxLogic : MonoBehaviour
                 new Vector3(GameObject.FindGameObjectWithTag("Ai").transform.position.x, GameObject.FindGameObjectWithTag("Ai").transform.position.y + 35f, GameObject.FindGameObjectWithTag("Ai").transform.position.z);
             hasLibie = true;
         }
+
     }
 
     public void OpenBox()

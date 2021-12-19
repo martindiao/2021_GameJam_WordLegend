@@ -28,7 +28,7 @@ public class TalkSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && isTalking)
+        if ((Input.GetButtonDown("Fire1")||Input.GetKeyDown(KeyCode.Space)) && isTalking)
         {
             CoutDialogs();
         }

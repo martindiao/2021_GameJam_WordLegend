@@ -177,6 +177,8 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
             //下一段对话
             Hit3DItem.gameObject.GetComponent<Interaction>().DialogueIndex += 1;
+            Hit3DItem.GetComponent<Interaction>().TextRegion.GetComponent<TalkSystem>().ChangeNPC("射", Hit3DItem.GetComponent<Interaction>().DialogueIndex);
+            Hit3DItem.GetComponent<Interaction>().TextRegion.transform.position = new Vector3(Hit3DItem.transform.position.x, Hit3DItem.transform.position.y + 35f, Hit3DItem.transform.position.z);
             //Destory
             thisInventory.items.Remove(slotItem);
             //Add new empty Slot
@@ -209,8 +211,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             Debug.Log("射矢");
 
-            //开箱子
-            //Hit3DItem.gameObject.GetComponent<BoxLogic>().OpenBox();
+            GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().GameStep += 1;
             //Destory
             thisInventory.items.Remove(slotItem);
             //Add new empty Slot

@@ -8,7 +8,7 @@ public class InteractiveItem : MonoBehaviour
     public GameObject PreMoDian; //交互时出现的过渡动画素材
     public float InterRange;    //交互范围
 
-    private GameObject NoteE;   //创建出的E键
+    public GameObject NoteE;   //创建出的E键
     private GameObject MoDian;  //创建出的墨点
     private Renderer ShowOrNot; //E键的显示
     private GameObject EleParent;   //新生成的object需要是this的子object
@@ -27,6 +27,8 @@ public class InteractiveItem : MonoBehaviour
         NoteE.transform.SetParent(EleParent.transform);
         NoteE.transform.position = transform.position;
         ShowOrNot = NoteE.GetComponent<Renderer>();
+        if (gameObject.name == "矢")
+            NoteE.SetActive(false);
 
         //生成淡入淡出墨点
         MoDian = Instantiate(PreMoDian);

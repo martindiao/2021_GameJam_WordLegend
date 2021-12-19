@@ -24,6 +24,7 @@ public class PuBuLogic : MonoBehaviour
         {
             if (collision.tag == "Player")
             {
+                collision.GetComponent<PlayerLogic>().enabled = false;
                 GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().switchPosition(
                     GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().WaterPot);
                 Shi.SetActive(true);

@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject AiPot;
 
     public GameObject HeiMu;    //黑幕
+    public GameObject TuiChu;
 
     public GameObject KaiChang;
     public Sprite Zhuibing;
@@ -45,19 +46,23 @@ public class GameManager : MonoBehaviour
     float HeiMuTimer = 0f;
     float HuangHuTimer = 0f;
     bool switched;
+    private List<GameObject> Baobiao = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         Player.transform.position = InitialPot.transform.position;
-        GameStep = 1;
+        GameStep = 0;
         HeiMu.SetActive(false);
         KaiChang.SetActive(true);
         started = false;
 
         NPC[2].SetActive(false);
+        
         foreach (var baobiao in GameObject.FindGameObjectsWithTag("baobiao"))
         {
+            Debug.Log(baobiao.name);
+            Baobiao.Add(baobiao);
             baobiao.SetActive(false);
         }
     }
@@ -71,6 +76,7 @@ public class GameManager : MonoBehaviour
             //KaiChang.GetComponent<Image>().color = new Color(1, 1, 1, 1);
             //kaichangTimer = 0;
             started = true;
+            GameStep+=1;
         }
         //if (started && KaiChang.activeSelf)
         //{
@@ -86,10 +92,40 @@ public class GameManager : MonoBehaviour
         //    }  
         //}
 
+        if (GameStep != 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape)&& Time.timeScale != 0)
+            {
+                TuiChu.SetActive(true);
+                Time.timeScale = 0;
+                
+            }
+            else if (Time.timeScale == 0)
+            {
+                Debug.Log(Time.timeScale);
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    Debug.Log("取消");
+                    TuiChu.SetActive(false);
+                    Time.timeScale = 1;
+                }
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    Application.Quit();
+                }
+            }
+        }
+
         if (GameStep == 5)
         {
             Player.GetComponent<PlayerLogic>().enabled = false;
-            if (!TalkRegion.activeSelf)
+            return;
+        }
+
+        if (GameStep == 6)
+        {
+            Player.GetComponent<PlayerLogic>().enabled = false;
+            if (!KaiChang.activeSelf)
             {
                 KaiChang.SetActive(true);
                 KaiChang.GetComponent<Animator>().Play("jiejv");
@@ -136,18 +172,19 @@ public class GameManager : MonoBehaviour
             Zhuyinyue.clip = JueDou;
             Zhuyinyue.Play();
             NPC[2].SetActive(true);
-            foreach(var baobiao in GameObject.FindGameObjectsWithTag("baobiao"))
+            foreach(var baobiao in Baobiao)
             {
                 Debug.Log(baobiao.name);
                 baobiao.SetActive(true);
             }
             NPC[1].transform.position = ShePot2.transform.position;
+            GameObject.FindGameObjectWithTag("Box").GetComponent<BoxLogic>().JiaMu.SetActive(false);
             NPC[0].SetActive(false);
         }
 
         if(GameStep == 4)
         {
-            if (HuangHuTimer >= 4.0f)
+            if (HuangHuTimer >= 6.0f)
             {
                 HeiMu.SetActive(true);
                 HuangHuTimer = 0f;
@@ -184,6 +221,8 @@ public class GameManager : MonoBehaviour
                 Player.GetComponent<PlayerLogic>().enabled = true;
             }
         }
+
+        
     }
 
     private void SetTalkState(bool state)
@@ -238,14 +277,6 @@ public class GameManager : MonoBehaviour
     public void TeleNPC(int index, GameObject pot)
     {
 
-    }
-
-    public void ZhuiBing()
-    {
-        KaiChang.SetActive(true);
-        KaiChang.GetComponent<Image>().sprite = Zhuibing;
-
-        KaiChang.GetComponent<Animator>().Play("zhuibing");
     }
 
 }

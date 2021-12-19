@@ -12,7 +12,7 @@ public class Interaction : MonoBehaviour
     public int DialogueIndex;
     public GameObject Jiaoxue;
 
-    private GameObject NoteE;   //创建出的E键
+    public GameObject NoteE;   //创建出的E键
     private Renderer ShowOrNot; //E键的显示
 
     private float Distance;
@@ -37,6 +37,8 @@ public class Interaction : MonoBehaviour
             Jiaoxue.SetActive(false);
 
         DialogueIndex = 0;
+        if (gameObject.name == "牧")
+            NoteE.SetActive(false);
     }
 
     // Update is called once per frame
