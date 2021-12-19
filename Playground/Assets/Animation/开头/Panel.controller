@@ -1,13 +1,13 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-7601168241069756045
+--- !u!1102 &-8195507103526090672
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: zhuibing
+  m_Name: kaishi
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -20,20 +20,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
+  m_Motion: {fileID: 7400000, guid: ac29405ed648041f9b82b799dbd539a5, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-3919884217284218450
+--- !u!1102 &-7601168241069756045
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New State
+  m_Name: zhuibing
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -110,17 +110,17 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -3919884217284218450}
-    m_Position: {x: 287.5, y: 139, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 9128302611905121369}
-    m_Position: {x: 140, y: 260, z: 0}
+    m_Position: {x: 280, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7601168241069756045}
-    m_Position: {x: 460, y: 260, z: 0}
+    m_Position: {x: 530, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 422251798280560800}
-    m_Position: {x: 300, y: 340, z: 0}
+    m_Position: {x: 220, y: 340, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -8195507103526090672}
+    m_Position: {x: 430, y: 290, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -130,7 +130,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -3919884217284218450}
+  m_DefaultState: {fileID: 9128302611905121369}
 --- !u!1102 &9128302611905121369
 AnimatorState:
   serializedVersion: 6

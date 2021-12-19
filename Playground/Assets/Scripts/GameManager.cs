@@ -67,24 +67,24 @@ public class GameManager : MonoBehaviour
     {
         if (!started && Input.GetKeyDown(KeyCode.Space))
         {
-            KaiChang.GetComponent<Animator>().Play("kaichang");
-            KaiChang.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-            kaichangTimer = 0;
+            KaiChang.GetComponent<Animator>().Play("kaishi");
+            //KaiChang.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            //kaichangTimer = 0;
             started = true;
         }
-        if (started && KaiChang.activeSelf)
-        {
-            if (kaichangTimer < 2.0f)
-            {
-                kaichangTimer += Time.deltaTime;
-                //KaiChang.GetComponent<Image>().color = new Color(1, 1, 1, 1-kaichangTimer/2.0f);
-            }
-            if (kaichangTimer >= 2.0f)
-            {
-                KaiChang.SetActive(false);
-                kaichangTimer = 0;
-            }  
-        }
+        //if (started && KaiChang.activeSelf)
+        //{
+        //    if (kaichangTimer < 2.0f)
+        //    {
+        //        kaichangTimer += Time.deltaTime;
+        //        //KaiChang.GetComponent<Image>().color = new Color(1, 1, 1, 1-kaichangTimer/2.0f);
+        //    }
+        //    if (kaichangTimer >= 2.0f)
+        //    {
+        //        KaiChang.SetActive(false);
+        //        kaichangTimer = 0;
+        //    }  
+        //}
 
         if (GameStep == 5)
         {
