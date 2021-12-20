@@ -81,17 +81,18 @@ public class Jiewei : MonoBehaviour
             
             timer += Time.deltaTime;
 
-            if (timer < 3.0f)
+            if (timer < 10.0f)
             {
-                gameObject.GetComponent<Image>().color = new Color(1, 1, 1, timer/3);
+                gameObject.GetComponent<Image>().color = new Color(1, 1, 1, timer/10);
             }
-            if (timer > 3.0f && timer <= 6.0f)
+            if (timer > 10.0f && timer <= 14.0f)
             {
+                gameObject.transform.localScale = new Vector3(4 - (timer - 10.0f)*0.75f, 4 - (timer - 10.0f)*0.75f, 1);
                 Debug.Log(gameObject.transform.localScale);
-                gameObject.transform.localScale = new Vector3(4 - (timer - 3.0f), 4 - (timer - 3.0f), 1);
             }
-            if (timer >= 6.0f)
+            if (timer >= 14.0f)
             {
+                Debug.Log("Quit");
                 Application.Quit();
             }
 

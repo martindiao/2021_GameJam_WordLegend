@@ -48,12 +48,12 @@ public class CameraRotation : MonoBehaviour
                 Debug.Log(transform.position);
                 //nextdistance = Vector3.Distance(new Vector3(0, 0, -400), transform.position) / 120;
                 direction = new Vector3(100, -80, -600) - transform.position;
-                nextdistance = direction / 180;
+                nextdistance = direction / 480;
                 
             }
             Timer += 1/60f;
             ending = true;
-            if (Timer <= 3.0f)
+            if (Timer <= 8.0f)
             {
                 Debug.Log(nextdistance);
                 transform.position += nextdistance;

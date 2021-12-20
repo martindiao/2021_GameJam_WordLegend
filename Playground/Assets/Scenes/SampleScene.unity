@@ -11438,7 +11438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1402222656
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11638,7 +11638,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -12902,7 +12902,7 @@ MonoBehaviour:
   Zhuibing: {fileID: 0}
   Jiewei: {fileID: 1402222655}
   Zhuan: {fileID: 21300000, guid: 1c3c0aad3021347e49c6977f72fc58ad, type: 3}
-  Ren: {fileID: 21300000, guid: 9ae6d4087368f49a58876f3a994c1fe2, type: 3}
+  Ren: {fileID: 1816088433}
   She: {fileID: 21300000, guid: afedc7b7584ba41778dd09d0daa7fb40, type: 3}
   JueDou: {fileID: 8300000, guid: 5a8eba3fa17f24d8cab220c06efb21da, type: 3}
   Feng: {fileID: 8300000, guid: 6d37e2f2fd4a9410ca6d581755185144, type: 3}

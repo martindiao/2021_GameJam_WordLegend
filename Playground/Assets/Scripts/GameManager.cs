@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     private GameObject targetPot;
 
+    float Kaishi = 0f;
     float HeiMuTimer = 0f;
     float HuangHuTimer = 0f;
     float WanJieTimer = 0f;
@@ -89,6 +90,12 @@ public class GameManager : MonoBehaviour
             //kaichangTimer = 0;
             started = true;
             GameStep+=1;
+        }
+        if (started)
+        {
+            Kaishi += Time.deltaTime;
+            if (Kaishi >= 10.5f)
+                KaiChang.SetActive(false);
         }
         //if (started && KaiChang.activeSelf)
         //{
@@ -139,6 +146,7 @@ public class GameManager : MonoBehaviour
             Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             Player.GetComponent<PlayerLogic>().enabled = false;
             Player.GetComponent<Animator>().enabled = false;
+            Jiewei.SetActive(true);
             if (!Jiewei.GetComponent<Jiewei>().jiewei)
             {
                 Jiewei.GetComponent<Jiewei>().jiewei = true;
