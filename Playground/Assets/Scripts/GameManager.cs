@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviour
             if(!Jiewei.GetComponent<Jiewei>().Wanjie && Jiewei.GetComponent<Jiewei>().jiewei && Jiewei.GetComponent<Image>().color == new Color(1, 1, 1, 0))
             {
                 WanJieTimer += Time.deltaTime;
-                if (WanJieTimer >= 3.0f)
+                if (WanJieTimer >= 4.0f)
                 {
                     Jiewei.GetComponent<Jiewei>().Wanjie = true;
                     Camera.main.GetComponent<CameraRotation>().ended = true;
@@ -242,7 +242,7 @@ public class GameManager : MonoBehaviour
         {
             if (xunyunCounter < 3)
             {
-                if (HuangHuTimer >= 4.0f)
+                if (HuangHuTimer >= 1.5f)
                 {
                     HeiMu.SetActive(true);
                     HuangHuTimer = 0f;
@@ -259,6 +259,22 @@ public class GameManager : MonoBehaviour
     {
         if (HeiMu.activeSelf)
         {
+            if (GameStep == 4)
+            {
+                HeiMuTimer += Time.fixedDeltaTime;
+                if (HeiMuTimer < 0.5f)
+                    HeiMu.GetComponent<Image>().color = new Color(0, 0, 0, HeiMuTimer);
+                if (HeiMuTimer > 0.5f)
+                {
+                    HeiMu.GetComponent<Image>().color = new Color(0, 0, 0, 1.0f - HeiMuTimer);
+                }
+                if (HeiMuTimer >= 1.0f)
+                {
+                    HeiMu.SetActive(false);
+                }
+                return;
+            }
+
             HeiMuTimer += Time.fixedDeltaTime;
             if (HeiMuTimer < 1.0f)
                 HeiMu.GetComponent<Image>().color = new Color(0, 0, 0, HeiMuTimer);
@@ -293,7 +309,10 @@ public class GameManager : MonoBehaviour
         {
             Player.GetComponent<Animator>().SetBool("isMoving", false);
         }
+        Player.GetComponent<Animator>().enabled = state;
         Player.GetComponent<PlayerLogic>().enabled = state;
+        if (!state)
+            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         foreach(var npc in NPC)
         {
             npc.GetComponent<Interaction>().enabled = state;
@@ -302,7 +321,14 @@ public class GameManager : MonoBehaviour
 
     private void SetPickItemState(bool state)
     {
+        if (!state)
+        {
+            Player.GetComponent<Animator>().SetBool("isMoving", false);
+        }
+        Player.GetComponent<Animator>().enabled = state;
         Player.GetComponent<PlayerLogic>().enabled = state;
+        if (!state)
+            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }
 
     private bool Liao()

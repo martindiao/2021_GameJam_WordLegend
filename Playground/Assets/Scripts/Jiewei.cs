@@ -37,11 +37,11 @@ public class Jiewei : MonoBehaviour
                 if (timer < 1.0f)
                 {
                     Up.GetComponent<Image>().sprite = sprites[index];
-                    Up.GetComponent<Image>().color = new Color(0, 0, 0, timer);
+                    Up.GetComponent<Image>().color = new Color(1, 1, 1, timer);
                 }
                 else if (timer >= 1.0f && timer <= 2.0f)
                 {
-                    Up.GetComponent<Image>().color = new Color(0, 0, 0, 2.0f - timer);
+                    Up.GetComponent<Image>().color = new Color(1, 1, 1, 2.0f - timer);
                 }
                 else
                 {
@@ -60,13 +60,18 @@ public class Jiewei : MonoBehaviour
 
             if (index >= 12 && index < sprites.Count - 1)
             {
-                Up.GetComponent<Image>().sprite = sprites[index];
-                Up.GetComponent<Image>().color = new Color(0, 0, 0, 1);
-                index++;
-            }
-            
+                if (timer < 2.0f)
+                {
+                    Up.GetComponent<Image>().sprite = sprites[index];
+                    Up.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                }
+                else
+                {
+                    timer = 0;
+                    index++;
 
-            
+                }                
+            }
         }
 
         if (Wanjie)
