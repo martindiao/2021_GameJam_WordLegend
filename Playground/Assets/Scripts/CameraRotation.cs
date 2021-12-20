@@ -43,16 +43,17 @@ public class CameraRotation : MonoBehaviour
         {
             if (!ending)
             {
+                transform.Rotate(new Vector3(45, 0, 0));
                 Debug.Log(transform.localPosition);
                 Debug.Log(transform.position);
                 //nextdistance = Vector3.Distance(new Vector3(0, 0, -400), transform.position) / 120;
-                direction = new Vector3(0, 0, -400) - transform.position;
-                nextdistance = direction / 120;
-                transform.Rotate(new Vector3(45, 0, 0));
+                direction = new Vector3(100, -80, -600) - transform.position;
+                nextdistance = direction / 180;
+                
             }
             Timer += 1/60f;
             ending = true;
-            if (Timer <= 2.0f)
+            if (Timer <= 3.0f)
             {
                 Debug.Log(nextdistance);
                 transform.position += nextdistance;

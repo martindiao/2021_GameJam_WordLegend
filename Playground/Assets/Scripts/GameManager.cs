@@ -26,8 +26,15 @@ public class GameManager : MonoBehaviour
     public GameObject KaiChang;
     public Sprite Zhuibing;
 
+    public GameObject Jiewei;
+    public Sprite Zhuan;
+    public GameObject Ren;
+    public Sprite She;
+
     public AudioClip JueDou;
+    public AudioClip Feng;
     public AudioSource Zhuyinyue;
+
 
     bool started;
     float kaichangTimer;
@@ -45,6 +52,11 @@ public class GameManager : MonoBehaviour
 
     float HeiMuTimer = 0f;
     float HuangHuTimer = 0f;
+    float WanJieTimer = 0f;
+    float XuanyunTimer = 0f;
+
+    int xunyunCounter = 0;
+
     bool switched;
     private List<GameObject> Baobiao = new List<GameObject>();
     // Start is called before the first frame update
@@ -124,11 +136,35 @@ public class GameManager : MonoBehaviour
 
         if (GameStep == 6)
         {
+            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             Player.GetComponent<PlayerLogic>().enabled = false;
-            if (!KaiChang.activeSelf)
+            Player.GetComponent<Animator>().enabled = false;
+            if (!Jiewei.GetComponent<Jiewei>().jiewei)
             {
-                KaiChang.SetActive(true);
-                KaiChang.GetComponent<Animator>().Play("jiejv");
+                Jiewei.GetComponent<Jiewei>().jiewei = true;
+                Destroy(GameObject.FindGameObjectWithTag("TA"));
+                NPC[2].GetComponent<SpriteRenderer>().sprite = Zhuan;
+                NPC[2].transform.localScale = new Vector3(2.5f, 2.5f, 1);
+                foreach(var xiaobing in Baobiao)
+                {
+                    Destroy(xiaobing);
+                }
+                Player.GetComponent<SpriteRenderer>().enabled = false;
+                Ren.SetActive(true);
+
+                NPC[1].GetComponent<SpriteRenderer>().sprite = She;
+
+                Bag.SetActive(false);
+            }
+
+            if(!Jiewei.GetComponent<Jiewei>().Wanjie && Jiewei.GetComponent<Jiewei>().jiewei && Jiewei.GetComponent<Image>().color == new Color(1, 1, 1, 0))
+            {
+                WanJieTimer += Time.deltaTime;
+                if (WanJieTimer >= 3.0f)
+                {
+                    Jiewei.GetComponent<Jiewei>().Wanjie = true;
+                    Camera.main.GetComponent<CameraRotation>().ended = true;
+                }
             }
             return;
         }
@@ -169,7 +205,7 @@ public class GameManager : MonoBehaviour
 
         if (GameStep == 4 && !Zhuyinyue.isPlaying)
         {
-            Zhuyinyue.clip = JueDou;
+            Zhuyinyue.clip = Feng;
             Zhuyinyue.Play();
             NPC[2].SetActive(true);
             foreach(var baobiao in Baobiao)
@@ -182,14 +218,31 @@ public class GameManager : MonoBehaviour
             NPC[0].SetActive(false);
         }
 
+        //Xuanyun
+        if(GameStep == 4 && XuanyunTimer <= 3.0f)
+        {
+            isInteraction = true;
+            XuanyunTimer += Time.deltaTime;
+        }
+        if(isInteraction && XuanyunTimer >= 3.0f)
+        {
+            isInteraction = false;
+        }
+
+        //XuanYunheiping
         if(GameStep == 4)
         {
-            if (HuangHuTimer >= 6.0f)
+            if (xunyunCounter < 3)
             {
-                HeiMu.SetActive(true);
-                HuangHuTimer = 0f;
+                if (HuangHuTimer >= 4.0f)
+                {
+                    HeiMu.SetActive(true);
+                    HuangHuTimer = 0f;
+                    xunyunCounter += 1;
+                }
+                HuangHuTimer += Time.deltaTime;
             }
-            HuangHuTimer += Time.deltaTime;
+            
         }
 
     }
@@ -219,6 +272,7 @@ public class GameManager : MonoBehaviour
                 if (GameStep != 4)
                     GameStep += 1;
                 Player.GetComponent<PlayerLogic>().enabled = true;
+                isInteraction = false;
             }
         }
 
@@ -272,6 +326,7 @@ public class GameManager : MonoBehaviour
         HeiMu.SetActive(true);
         switched = false;
         targetPot = pot;
+        isInteraction = true;
     }
 
     public void TeleNPC(int index, GameObject pot)

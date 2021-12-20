@@ -103,6 +103,12 @@ public class InteractiveItem : MonoBehaviour
                     if (!gameObject.GetComponent<SnakeLogic>().CanPick())
                         return;
                 }
+                if (gameObject.name == "矢")
+                {
+                    GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().Zhuyinyue.clip =
+                        GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().JueDou;
+                    GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().Zhuyinyue.Play();
+                }
                 MoDian.GetComponent<Animator>().Play("淡入淡出");
                 timer = 0;
                 Debug.Log(MoDian.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0));

@@ -211,7 +211,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             Debug.Log("射矢");
 
-            GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().GameStep += 1;
+            GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().GameStep = 6;
             //Destory
             thisInventory.items.Remove(slotItem);
             //Add new empty Slot

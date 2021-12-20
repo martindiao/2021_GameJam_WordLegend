@@ -6,6 +6,7 @@ public class MuLogic : MonoBehaviour
 {
     public GameObject TextRegion;
 
+    bool plued = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +24,13 @@ public class MuLogic : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            collision.GetComponent<PlayerLogic>().enabled = false;
             TextRegion.GetComponent<TalkSystem>().ChangeNPC("牧", 0);
 
             TextRegion.transform.position = new Vector3(transform.position.x, transform.position.y + 35f, transform.position.z);
-            GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().GameStep += 1;
+            if(!plued)
+                GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().GameStep = 5;
+            plued = true;
         }
     }
 }
