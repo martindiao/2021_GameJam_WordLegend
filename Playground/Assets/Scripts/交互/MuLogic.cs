@@ -24,6 +24,10 @@ public class MuLogic : MonoBehaviour
         if (collision.tag == "Player")
         {
             GameObject.FindGameObjectWithTag("EleParent").GetComponent<GameManager>().isInteraction = true;
+
+            collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            collision.GetComponent<Animator>().enabled = false;
+            collision.GetComponent<PlayerLogic>().enabled = false;
             TextRegion.GetComponent<TalkSystem>().ChangeNPC("牧", 0);
 
             TextRegion.transform.position = new Vector3(transform.position.x, transform.position.y + 35f, transform.position.z);

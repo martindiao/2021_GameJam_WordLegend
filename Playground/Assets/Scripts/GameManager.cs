@@ -242,7 +242,7 @@ public class GameManager : MonoBehaviour
         {
             if (xunyunCounter < 3)
             {
-                if (HuangHuTimer >= 1.5f)
+                if (HuangHuTimer >= 2.0f)
                 {
                     HeiMu.SetActive(true);
                     HuangHuTimer = 0f;
@@ -262,13 +262,13 @@ public class GameManager : MonoBehaviour
             if (GameStep == 4)
             {
                 HeiMuTimer += Time.fixedDeltaTime;
-                if (HeiMuTimer < 0.5f)
+                if (HeiMuTimer < 0.8f)
                     HeiMu.GetComponent<Image>().color = new Color(0, 0, 0, HeiMuTimer);
-                if (HeiMuTimer > 0.5f)
+                if (HeiMuTimer > 0.8f)
                 {
-                    HeiMu.GetComponent<Image>().color = new Color(0, 0, 0, 1.0f - HeiMuTimer);
+                    HeiMu.GetComponent<Image>().color = new Color(0, 0, 0, 1.6f-HeiMuTimer);
                 }
-                if (HeiMuTimer >= 1.0f)
+                if (HeiMuTimer >= 1.6f)
                 {
                     HeiMu.SetActive(false);
                 }
